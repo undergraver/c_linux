@@ -17,7 +17,7 @@ void b(int param) {
 
 void a(int param) {
     char buf[10];
-    int x = 1 + param;// on the stack variable
+    int x = 0x123 + param;// on the stack variable
     b(x);
     printf("Address of x is:%p\n",&x);
 }
