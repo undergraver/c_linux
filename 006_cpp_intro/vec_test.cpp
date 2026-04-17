@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 	int n;
-	vector_int v(3);
+	GenericVector<int> v(3);
 	cin >> n;
 	for(int i=0;i<n;i++)
 	{
@@ -15,5 +15,15 @@ int main()
 		v.add(val);
 	}
 	v.display();
+
+	GenericVector<double> d(800);
+	for(int i=0;i<n;i++)
+	{
+		double val;
+		cin >> val;
+		d.add(val);
+	}
+	d.display();
+
 	return 0;
 }

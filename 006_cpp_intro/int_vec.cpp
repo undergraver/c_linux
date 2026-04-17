@@ -2,28 +2,34 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <iostream>
 
+using namespace std;
 
-vector_int::vector_int(int max_elems)
+template <typename T>
+
+GenericVector<T>::GenericVector(int max_elems)
 {
-	array = (int *)malloc(max_elems*sizeof(int));
+	array = new T[max_elems];
 	length = 0;
 	maximumSize = max_elems;
 	printf("constructor\n");
 }
 
-int vector_int::add(int elem)
+template <typename T>
+
+int GenericVector<T>::add(T elem)
 {
 	if (length >= maximumSize)
 	{
 		int newMaxSize = length + 100;
-		int *newArray = (int *)malloc(newMaxSize*sizeof(int));
+		T *newArray = new T[newMaxSize];
 		if (newArray == NULL)
 		{
 			return 2;
 		}
-		memcpy(newArray,array,length*sizeof(int));
-		free(array);
+		memcpy(newArray,array,length*sizeof(T));
+		delete [] array;
 		array = newArray;
 		maximumSize = newMaxSize;
 	}
@@ -34,23 +40,31 @@ int vector_int::add(int elem)
 	return 0;
 }
 
-void vector_int::display()
+template <typename T>
+
+void GenericVector<T>::display()
 {
 	int i;
-	printf("[");
+	cout << "[";
 	for(i=0;i<length;i++)
 	{
-		printf("%d,",array[i]);
+		cout << array[i] << ",";
 	}
-	printf("]\n");
+	cout << "]\n";
 }
 
-vector_int::~vector_int()
+template <typename T>
+
+GenericVector<T>::~GenericVector()
 {
 	if (array != NULL)
 	{
-		free(array);
+		delete [] array;
 	}
 	printf("destructor\n");
 }
+
+
+template class GenericVector<int>;
+template class GenericVector<double>;
 

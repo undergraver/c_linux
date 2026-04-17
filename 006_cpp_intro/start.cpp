@@ -26,7 +26,7 @@ void set_values(int x, int y, int z)
 	this->y = y;
 	this->z = z;
 }
-
+public:
 void show_values()
 {
 	cout << "x=" << x << ";y=" << y << ";z=" << z << endl;
@@ -71,8 +71,12 @@ int main()
         	cout << e.x << endl;;
 		e.show_values();
 	}
+	Example *e = new Example();
 
 	Derived d;
+
+	delete e;
+
 	d.show_values();
 
 	cout << "After scope" << endl;

@@ -1,14 +1,15 @@
 #pragma once
 
-class vector_int {
+template <typename T>
+class GenericVector {
 public:
-	vector_int(int max_elems);
-	~vector_int();
-	int add(int elem);
+	GenericVector(int max_elems);
+	~GenericVector();
+	int add(T elem);
 	void display();
 private:
 	int length;
 	int maximumSize;
-	int *array;
+	T *array;
 };
 
