@@ -9,6 +9,8 @@ public:
 	int add(T elem);
 	void display();
 	const GenericVector<T>& operator=(const GenericVector<T>& rightHandSide);
+	GenericVector<T> operator+(const GenericVector<T>& rightHandSide);
+	const GenericVector<T>& operator+=(const GenericVector<T>& rightHandSide);
 private:
 	void releaseMemory();
 	bool allocate(int max_elems);

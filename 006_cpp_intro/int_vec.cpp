@@ -46,6 +46,32 @@ const GenericVector<T>& GenericVector<T>::operator=(const GenericVector<T>& righ
 }
 
 template <typename T>
+GenericVector<T> GenericVector<T>::operator+(const GenericVector<T>& rightHandSide)
+{
+	GenericVector<T> temp(maximumSize + rightHandSide.maximumSize);
+	T* dest = temp.array;
+	std::copy(array,array+length,dest);
+	temp.length+=length;
+
+	dest+=length;
+	std::copy(rightHandSide.array,rightHandSide.array+rightHandSide.length,dest);
+
+	temp.length+=rightHandSide.length;
+	return temp;
+}
+
+template <typename T>
+const GenericVector<T>& GenericVector<T>::operator+=(const GenericVector<T>& rightHandSide)
+{
+	// poor implementation when it comes down to performance - maybe
+	for(int i=0;i<rightHandSide.length;i++)
+	{
+		add(rightHandSide.array[i]);
+	}
+	return *this;
+}
+
+template <typename T>
 
 int GenericVector<T>::add(T elem)
 {
