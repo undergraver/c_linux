@@ -10,10 +10,39 @@ template <typename T>
 
 GenericVector<T>::GenericVector(int max_elems)
 {
+	allocate(max_elems);
+	printf("constructor\n");
+}
+
+template <typename T>
+GenericVector<T>::GenericVector(const GenericVector<T>& rightHandSide)
+{
+	printf("copy constructor\n");
+	allocate(rightHandSide.maximumSize);
+	std::copy(rightHandSide.array,rightHandSide.array+rightHandSide.length,array);
+	length = rightHandSide.length;
+}
+
+template <typename T>
+bool GenericVector<T>::allocate(int max_elems)
+{
 	array = new T[max_elems];
 	length = 0;
 	maximumSize = max_elems;
-	printf("constructor\n");
+	printf("allocate %p\n",array);
+	return (array != nullptr);
+}
+
+template <typename T>
+
+const GenericVector<T>& GenericVector<T>::operator=(const GenericVector<T>& rightHandSide)
+{
+	printf("operator =\n");
+	releaseMemory();
+	allocate(rightHandSide.maximumSize);
+	std::copy(rightHandSide.array,rightHandSide.array+rightHandSide.length,array);
+	length = rightHandSide.length;
+	return (*this);
 }
 
 template <typename T>
@@ -57,11 +86,19 @@ template <typename T>
 
 GenericVector<T>::~GenericVector()
 {
+	releaseMemory();
+	printf("destructor\n");
+}
+
+template <typename T>
+
+void GenericVector<T>::releaseMemory()
+{
 	if (array != NULL)
 	{
+		printf("release:%p\n",array);
 		delete [] array;
 	}
-	printf("destructor\n");
 }
 
 
