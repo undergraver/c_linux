@@ -17,6 +17,7 @@ int main()
 	v.display();
 
 	GenericVector<double> d(800);
+	cin >> n;
 	for(int i=0;i<n;i++)
 	{
 		double val;
