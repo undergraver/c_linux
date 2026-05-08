@@ -1,0 +1,23 @@
+%language=C++
+%readonly-tables
+%compare-strncmp
+%define class-name KeywordTable
+%define lookup-function-name lookup
+
+struct Keyword {
+    const char* name;
+    int value;
+};
+
+%%
+if,     1
+else,   2
+while,  3
+for,    4
+return, 5
+gigi,   6
+taur,   7
+eu,     8
+gogu,   9
+gugu,   10
+%%
